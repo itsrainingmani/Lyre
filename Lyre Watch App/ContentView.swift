@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var mediaViewModel = MediaViewModel()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(mediaViewModel.currentTitle)
+                .padding()
+                .onAppear {
+                    mediaViewModel.updateMediaInfo()
+                }
         }
-        .padding()
     }
 }
+
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(mediaTitle: "Preview Title")
+//    }
+//}
 
 #Preview {
     ContentView()
